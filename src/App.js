@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styled from "styled-components";
+import Calendar from "./Calendar";
+import { Route, Switch, withRouter } from "react-router-dom";
+import ListAdd from "./ListAdd";
 
-function App() {
+const MyCalendar = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Title>내 달력</Title>
+      <Line />
+      <Route path="/" exact component={Calendar} />
+      <Route path="/listadd" component={ListAdd} />
     </div>
   );
-}
+};
 
-export default App;
+const Title = styled.h1`
+  color: pink;
+  text-align: center;
+`;
+
+const Line = styled.hr`
+  margin: 16px 0px;
+  border: 1px dotted #ddd;
+`;
+
+export default withRouter(MyCalendar);
